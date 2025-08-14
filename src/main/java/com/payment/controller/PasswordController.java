@@ -1,5 +1,6 @@
 package com.payment.controller;
 
+import com.payment.service.PasswordService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.payment.dto.ResetPasswordRequest;
 import com.payment.dto.ResetPasswordResponse;
-import com.payment.service.PasswordService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class PasswordController {
 
     private final PasswordService passwordService;

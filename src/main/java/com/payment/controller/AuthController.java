@@ -1,6 +1,7 @@
 package com.payment.controller;
 
 
+import com.payment.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +16,8 @@ import com.payment.dto.AuthRequest;
 import com.payment.dto.AuthResponse;
 import com.payment.dto.RegisterRequest;
 import com.payment.model.User;
-import com.payment.repository.UserRepository;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -41,6 +43,9 @@ public class AuthController {
         u.setEmail(req.getEmail());
         u.setName(req.getName());
         u.setPassword(passwordEncoder.encode(req.getPassword()));
+        u.setPhNo(req.getPhNo());
+        u.setPin(req.getPin());
+        u.setUuid(UUID.randomUUID());
         userRepository.save(u);
         return ResponseEntity.ok("User registered");
     }

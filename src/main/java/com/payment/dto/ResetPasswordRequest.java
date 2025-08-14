@@ -1,20 +1,11 @@
 package com.payment.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ResetPasswordRequest {
     private String oldPassword;
     private String newPassword;
-
-    // getters and setters
-    public String getOldPassword() {
-        return oldPassword;
-    }
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
-    }
-    public String getNewPassword() {
-        return newPassword;
-    }
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
 }

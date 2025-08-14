@@ -4,27 +4,30 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "user_subscriptions")
+@Table(name = "payment_histories")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSubscription {
+public class PaymentHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private String status; // WAITING, SUCCESS, FAILED
+
+    private BigDecimal amount;
+    private String message;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subscription_id")
+    private Subscription subscription;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id")
-    private Card card;
 }

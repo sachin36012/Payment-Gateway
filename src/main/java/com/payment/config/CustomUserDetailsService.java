@@ -1,12 +1,12 @@
 package com.payment.config;
 
+import com.payment.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.payment.model.User;
-import com.payment.repository.UserRepository;
 
 import java.util.Collections;
 

@@ -33,7 +33,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/signup", "/api/auth/login").permitAll()
-                .requestMatchers("/api/user/**","/api/cards/**","/api/subscriptions/**","/api/user-subscriptions/**").authenticated()
+                .requestMatchers("/api/users/**","/api/cards/**","/api/gateways/**","/api/histories/**","/api/subscriptions/**","/api/user-subscriptions/**").authenticated()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

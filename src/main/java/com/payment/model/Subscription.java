@@ -1,7 +1,7 @@
 package com.payment.model;
 
+import java.math.BigDecimal;
 import java.util.List;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,34 +11,31 @@ import lombok.*;
  * This entity is used to define different subscription plans available for users.
  */
 
+
 @Entity
-@Table(name = "subscription")
+@Table(name = "subscriptions")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Subscription {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "plan_name", nullable = false)
-    private String planName;
-
-    @Column(name = "description")
+    private String name;
+    private BigDecimal amount;
     private String description;
 
-    @Column(name = "price", nullable = false)
-    private Double price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "duration_months", nullable = false)
-    private Integer durationMonths; // e.g., 1 month, 6 months, 12 months
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_gateway_id")
+    private PaymentGateway paymentGateway;
 
-    @Column(name = "active", nullable = false)
-    private Boolean active;
-    
-    // One subscription can belong to many users
     @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserSubscription> userSubscriptions;
+    private List<PaymentHistory> paymentHistories;
 }
 
